@@ -4,16 +4,19 @@
   "description": "Full stack practice - Create a CRUD app using React, and RESTful API powered by Node with Express and a database (MySQL or MongoDB)",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=development --watch",
-    "build": "webpack --mode=production"
+    "dev": "webpack --mode=development --watch",
+    "build": "webpack --mode=production",
+    "start": "nodemon server/index.js"
   },
   "author": "Abraham Esparza",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
+    "nodemon": "^2.0.4",
     "path": "^0.12.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
