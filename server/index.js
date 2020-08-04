@@ -18,23 +18,29 @@ app.get('/', (req, res) => {
 app.get('/api/cows', (req, res) => {
   //handle api call to get all cows from list
   db.Cow.find({}, (err, data) => {
-    if (err) console.error(err);
-    else console.log(data);
+    if (err) {
+      res.status(500).send(err)
+    }
+    else {
+      res.status(200).send(data)
+    }
   });
-  res.send('Success');
 });
 
 app.post('/api/cows', (req, res) => {
   //handle api call to post new cow to cows list
   db.Cow.create({
-    id: 7,
-    name: 'Novi',
-    description: 'Sassy black labradoodle puppy'
+    id: 8,
+    name: 'Nova',
+    description: 'Sassy pitbull puppy'
   }, (err, data) => {
-    if (err) console.error(err);
-    else console.log('New post', data)
+    if (err) {
+      res.status(500).send(err)
+    }
+    else {
+      res.status(200).send(data);
+    }
   });
-  res.send('Success');
 })
 
 app.listen(port, () => {
