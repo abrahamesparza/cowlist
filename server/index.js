@@ -29,10 +29,11 @@ app.get('/api/cows', (req, res) => {
 
 app.post('/api/cows', (req, res) => {
   //handle api call to post new cow to cows list
+  let data = req.body;
+
   db.Cow.create({
-    id: 8,
-    name: 'Nova',
-    description: 'Sassy pitbull puppy'
+    name: data.name,
+    description: data.description
   }, (err, data) => {
     if (err) {
       res.status(500).send(err)
