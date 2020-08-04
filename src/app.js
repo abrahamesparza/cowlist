@@ -60,7 +60,7 @@ class App extends Component {
     .catch(err => {
       console.log('Error:', err)
     })
-    this.componentDidMount()
+    this.componentDidUpdate()
   }
 
   render() {
