@@ -10,7 +10,9 @@ class App extends Component {
     return (
       <div className="tc b f1">
         <h1>COWLIST</h1>
-        <h2 className="tc b f3">Cow 1</h2>
+        <ul className="list">
+          <li className="grow tc light-blue w-auto mw-100-1">1</li>
+        </ul>
       </div>
     )
   }
