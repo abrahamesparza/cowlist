@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import Search from './components/search'
+import Cows from './components/cows';
 
 class App extends Component {
   constructor(props) {
@@ -9,10 +10,12 @@ class App extends Component {
     this.state = {
       cows: [],
       name: '',
-      description: ''
+      description: '',
+      display: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDescription = this.handleDescription.bind(this);
   }
 
   componentDidMount() {
@@ -60,19 +63,25 @@ class App extends Component {
     .catch(err => {
       console.log('Error:', err)
     })
-    this.componentDidUpdate()
+    this.componentDidMount()
+  }
+  // changes display boolean, need to use to display the description of the cow clicked
+  handleDescription(e) {
+    let { display } = this.state;
+    this.setState({
+      display: !display
+    });
+    console.log(e.target);
   }
 
   render() {
-    let { cows } = this.state;
+    let { cows, display } = this.state;
     console.log('cows state in render', cows)
     return (
       <div className="tc b f1">
         <h2 className="tc f2 grow washed-red">Add Cows To Your Moolection</h2>
         <Search submit={this.handleSubmit} change={this.handleChange}/>
-          {cows.map(cow => (
-            <p key={cow.id} className="tc f2 washed-red i grow">{cow.name}</p>
-            ))}
+        <Cows cows={cows} display={display} click={this.handleDescription}/>
       </div>
     )
   }
