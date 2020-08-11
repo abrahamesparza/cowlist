@@ -11,7 +11,8 @@ class App extends Component {
       cows: [],
       name: '',
       description: '',
-      display: false
+      display: false,
+      selected: '' //intended to store selected cow's description
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -67,21 +68,31 @@ class App extends Component {
   }
   // changes display boolean, need to use to display the description of the cow clicked
   handleDescription(e) {
+    let cowClicked = e.target.innerText;
+    //use above variable to write the functionality to display the description for only the cow selected.
     let { display } = this.state;
     this.setState({
-      display: !display
+      display: !display,
+      selected: cowClicked
     });
-    console.log(e.target);
   }
 
   render() {
-    let { cows, display } = this.state;
+    let { cows, display, selected} = this.state;
     console.log('cows state in render', cows)
     return (
       <div className="tc b f1">
         <h2 className="tc f2 grow washed-red">Add Cows To Your Moolection</h2>
         <Search submit={this.handleSubmit} change={this.handleChange}/>
-        <Cows cows={cows} display={display} click={this.handleDescription}/>
+        <ul className='list w-100'>
+          {cows.map(cow => {
+            if (display === false) {
+              return <li key={cow._id} className="tc f2 w-90 ml5 washed-red i grow" onClick={this.handleDescription}>{cow.name}</li>
+            } else if (display === true && selected === cow.name) {
+              return <li key={cow._id} className="tc f1 w-90 ml5 bg-dark-gray washed-red i b grow" onClick={this.handleDescription}>{cow.name}:&nbsp;{cow.description}</li>
+            }
+          })}
+        </ul>
       </div>
     )
   }
