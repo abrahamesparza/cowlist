@@ -14,17 +14,6 @@ const cowSchema =  new mongoose.Schema({
 
 const Cow = mongoose.model('Cow', cowSchema);
 
-// const moolawn = new Cow({
-//   id: 6,
-//   name: 'MooLawn',
-//   description: 'a legendary Chinese warrior from the Northern and Southern dynasties period (420–589) of Chinese history.'
-// });
-
-// moolawn.save((err, sil) => {
-//   if (err) console.error(err);
-//   else console.log('Saved:', sil);
-// });
-
 module.exports = {
   Cow
 }

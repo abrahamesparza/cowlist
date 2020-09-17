@@ -44,6 +44,10 @@ app.post('/api/cows', (req, res) => {
   });
 })
 
+app.put('/cow/name', (req, res) => {
+  console.log('cow/name body', req.body);
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
